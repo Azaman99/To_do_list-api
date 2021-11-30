@@ -152,7 +152,7 @@ def mark_complete(request, todo_id):
 def today_list(request):
     if request.method == 'GET':
         today_date = timezone.now().date()
-        objects = Task.objects.filter(date=today_date, user=request.user)
+        objects = Task.objects.filter(date=today_date, author=request.user)
 
         serializer = TaskSerializer(objects, many=True)
         data = {
@@ -172,7 +172,7 @@ def future_list(request):
     if request.method == 'POST':
         serializer = FutureSerializer(data=request.data)
         if serializer.is_valid():
-            objects = Task.objects.filter(date=serializer.validated_data['date'], user=request.user)
+            objects = Task.objects.filter(date=serializer.validated_data['date'], author=request.user)
 
             serializer = TaskSerializer(objects, many=True)
             data = {
