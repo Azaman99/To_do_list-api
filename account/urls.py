@@ -3,8 +3,10 @@ from . import views
 
 
 urlpatterns = [
-    path('users/', views.new_user),
-    path("users/<int:user_id>", views.user_detail),
-    path('users/change_password/', views.change_password),
-    path('users/login', views.login_view)
+    path('users/signup/', views.add_user),
+    path('users/', views.get_user),
+    path('users/login/', views.user_login),
+    path('users/change_passowrd/', views.reset_password),
+    path('users/profile/', views.profile),
+    path('users/<uuid:user_id>/', views.user_detail),
 ]

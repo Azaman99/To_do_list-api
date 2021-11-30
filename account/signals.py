@@ -1,7 +1,9 @@
 from django.db.models.signals import post_save
 from django.dispatch import receiver
-from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
 from django.core.mail import send_mail
+
+User = get_user_model()
 
 
 @receiver(post_save, sender=User)
@@ -19,5 +21,5 @@ The Django Team
         send_mail(subject="Your Account has been Created", 
                  message=message, 
                  recipient_list=[instance.email], 
-                 from_email="anthonypeterclaver@gmail.com")
+                 from_email="admin@reportly.com")
         

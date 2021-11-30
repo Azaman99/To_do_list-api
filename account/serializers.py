@@ -11,16 +11,16 @@ class CustomUserSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class ChangePasswordSerializer(serializers.Serializer):
-    old_password = serializers.CharField(max_length=500)
-    new_password = serializers.CharField(max_length=500)
-    re_password = serializers.CharField(max_length=500)
+    old_password = serializers.CharField(max_length=200)
+    new_password = serializers.CharField(max_length=200)
+    re_password = serializers.CharField(max_length=200)
 
     def validate_new_password(self, value):
         if value != self.initial_data['re_password']:
             raise serializers.ValidationError("Please enter matching passwords")
         return value
 
-class LoginSerializer(serializers.Serializer):
-    username = serializers.CharField(max_length=500)
-    password = serializers.CharField(max_length=500)
+# class LoginSerializer(serializers.Serializer):
+#     username = serializers.CharField(max_length=200)
+#     password = serializers.CharField(max_length=200)
    
