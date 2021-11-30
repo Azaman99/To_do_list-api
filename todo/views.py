@@ -18,7 +18,7 @@ from django.utils import timezone
 @api_view(["GET", "POST"])
 def task(request):
     if request.method == "GET":
-        all_tasks = Task.objects.filter(user=request.user)
+        all_tasks = Task.objects.filter(author=request.user)
         serializer = TaskSerializer(all_tasks, many=True)
 
         data = {
@@ -35,7 +35,7 @@ def task(request):
             if 'user' in serializer.validated_data.keys():
                 serializer.validated_data.pop('user')
 
-            object = Task.objects.create(**serializer.validated_data, user=request.user)
+            object = Task.objects.create(**serializer.validated_data, author=request.user)
             serializer = TaskSerializer(object)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
 
