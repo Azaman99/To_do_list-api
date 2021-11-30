@@ -5,6 +5,8 @@ name = "pypi"
 
 [packages]
 drf-yasg = "*"
+gunicorn = "*"
+python-dotenv = "*"
 
 [dev-packages]
 
